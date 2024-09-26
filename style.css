@@ -1,0 +1,65 @@
+html,body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+}
+body{
+    max-width: 1600px;
+    margin: auto;
+}
+header{
+    display: flex;
+    padding: 20px 40px;
+}
+header nav a.navigation-item{
+     color: #686868;
+     text-decoration: none;
+     margin-right: 16px;
+}
+header nav a.navigation-item.active{
+    color: #000;
+    text-decoration: underline;
+}
+header nav a.navigation-item:hover{
+    color: #000;
+    text-decoration: underline;
+}
+
+
+
+.intro{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.intro h2,
+.intro h4{
+    text-align: center;
+    margin: 0px;
+}
+.intro h2{
+    color:#1838b9
+}
+.intro h4{
+    font-weight: normal;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 16px;
+    padding: 40px;
+}
+.grid-container .grid-item img{
+    max-width: 100%;
+}
+.grid-container .grid-item .meta-information{
+    text-align: center;
+}
+
+
+#section-experience{
+    padding: 40px;
+    background-color: #f8f8f8;
+}
