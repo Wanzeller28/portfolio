@@ -79,6 +79,12 @@ p,h1,h2,h3,h4 {
     margin-block-start: 10px;
     margin-block-end: 10px;
 }
+a{
+    color: var(--color-primary);
+}
+
+
+
 header{
     display: flex;
     padding: 20px 40px;
@@ -125,6 +131,7 @@ main {
 
 .grid-container {
     display: grid;
+    gap:16px;
 }
 .grid-columns-2 {
     grid-template-columns: auto auto;
