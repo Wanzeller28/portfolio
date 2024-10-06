@@ -1,3 +1,67 @@
+:root{
+   --color-primary:#1838b9;
+}
+
+.text-primary{
+    color:var(--color-primary);
+}
+.background-primary{
+    background-color:var(--color-primary);
+}
+
+
+/*Utilities*/
+.max-full-width{
+    max-width: 100%;
+}
+
+.margin-top-large{
+    margin-top: 40px;
+}
+.margin-top-medium{
+    margin-top: 32px;
+}
+.margin-top-base{
+    margin-top: 20px;
+}
+.margin-top-s{
+    margin-top: 12px;
+}
+.margin-top-xs{
+    margin-top: 4px;
+}
+.margin-top-none{
+    margin-top: 0px;
+}
+
+.margin-bottom-large{
+    margin-bottom: 40px;
+}
+.margin-bottom-medium{
+    margin-bottom: 32px;
+}
+.margin-bottom-base{
+    margin-bottom: 20px;
+}
+.margin-bottom-s{
+    margin-bottom: 12px;
+}
+.margin-bottom-xs{
+    margin-bottom: 4px;
+}
+.margin-bottom-none{
+    margin-bottom: 0px;
+}
+
+
+.bold{
+    font-weight: 700;
+}
+.semi-bold{
+    font-weight: 600;
+}
+
+
 html,body{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -7,6 +71,13 @@ html,body{
 body{
     max-width: 1600px;
     margin: auto;
+}
+h1{
+    font-size: 40px;
+}
+p,h1,h2,h3,h4 {
+    margin-block-start: 10px;
+    margin-block-end: 10px;
 }
 header{
     display: flex;
@@ -27,14 +98,21 @@ header nav a.navigation-item:hover{
 }
 
 
+main {
+    padding: 20px 40px;
+}
+
+
 
 .intro{
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.intro h2,
-.intro h4{
+.intro *{
     text-align: center;
+}
+.intro h1,
+.intro h4{
     margin: 0px;
 }
 .intro h2{
@@ -47,15 +125,40 @@ header nav a.navigation-item:hover{
 
 .grid-container {
     display: grid;
+}
+.grid-columns-2 {
     grid-template-columns: auto auto;
-    grid-gap: 16px;
+}
+.grid-columns-3 {
+    grid-template-columns: auto auto auto;
+}
+.grid-columns-4 {
+    grid-template-columns: auto auto auto auto;
+}
+body.home .grid-container {
     padding: 40px;
 }
+.grid-item{
+    display:flex;
+    flex-direction: column;
+}
+.grid-item .thumbnail{
+    flex: 1;
+    background-color: #e9eef2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 .grid-container .grid-item img{
+    width: 600px;
     max-width: 100%;
 }
 .grid-container .grid-item .meta-information{
     text-align: center;
+}
+.phone .grid-container{
+    grid-template-columns: auto;
 }
 
 
@@ -63,3 +166,9 @@ header nav a.navigation-item:hover{
     padding: 40px;
     background-color: #f8f8f8;
 }
+#section-experience > div{
+    max-width: 1200px;
+    margin: auto;
+}
+
+
