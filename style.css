@@ -94,7 +94,7 @@ a{
 
 
 
-header{
+.desktop header{
     display: flex;
     padding: 20px 40px;
 }
@@ -111,10 +111,17 @@ header nav a.navigation-item:hover{
     color: #000;
     text-decoration: underline;
 }
+.phone header{
+    padding: 20px 20px;
+}
 
 
-main {
+.desktop main {
     padding: 20px 40px;
+}
+
+.phone main {
+    padding: 20px 20px;
 }
 
 
@@ -151,7 +158,7 @@ main {
 .grid-columns-4 {
     grid-template-columns: auto auto auto auto;
 }
-body.home .grid-container {
+body.home.desktop .grid-container {
     padding: 40px;
 }
 .grid-item{
