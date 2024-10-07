@@ -14,6 +14,15 @@
 .max-full-width{
     max-width: 100%;
 }
+.display-flex{
+    display: flex;
+}
+.border-radius{
+    border-radius: 100%;
+}
+.photo img{
+    max-width: 220px;
+}
 
 .margin-top-large{
     margin-top: 40px;
