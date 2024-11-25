@@ -111,7 +111,8 @@ header nav a.navigation-item:hover{
     color: #000;
     text-decoration: underline;
 }
-.phone header{
+.phone header,
+.tablet header{
     padding: 20px 20px;
 }
 
@@ -120,7 +121,8 @@ header nav a.navigation-item:hover{
     padding: 20px 40px;
 }
 
-.phone main {
+.phone main,
+.tablet main {
     padding: 20px 20px;
 }
 
@@ -195,3 +197,31 @@ body.home.desktop .grid-container {
 }
 
 
+/*About Page*/
+.about main{
+    margin-top: 40px;
+}
+.desktop.about main{
+    display: flex;
+    margin-top: 60px;
+}
+.desktop.about main .services{
+    width: 33%;
+    padding-right: 24px;
+}
+.desktop.about main .bio{
+    width: 60%;
+}
+.tablet.about main .bio,
+.phone.about main .bio{
+    margin-top: 40px;
+}
+.desktop.about h1{
+    padding-left: 120px;
+    padding-right: 120px;
+}
+.about h1{
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
