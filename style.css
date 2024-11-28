@@ -167,11 +167,10 @@ body.home.desktop .grid-container {
     display:flex;
     flex-direction: column;
 }
-.home .grid-item{
-    background-color: #e9eef2;
-}
+
 .grid-item .thumbnail{
     flex: 1;
+    background-color: #e9eef2;
     display: flex;
     align-items: center;
     justify-content: center;
