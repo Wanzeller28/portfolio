@@ -17,12 +17,19 @@
 .display-flex{
     display: flex;
 }
+.align-items-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
 .border-radius{
     border-radius: 100%;
 }
 .photo img{
     max-width: 220px;
 }
+
 
 .margin-top-large{
     margin-top: 40px;
@@ -82,6 +89,9 @@ body{
     margin: auto;
 }
 h1{
+    font-size: 60px;
+}
+h2{
     font-size: 40px;
 }
 p,h1,h2,h3,h4 {
@@ -217,11 +227,11 @@ body.home.desktop .grid-container {
 .phone.about main .bio{
     margin-top: 40px;
 }
-.desktop.about h1{
+.desktop.about h2{
     padding-left: 120px;
     padding-right: 120px;
 }
-.about h1{
+.about h2{
     text-align: center;
     padding-left: 20px;
     padding-right: 20px;
