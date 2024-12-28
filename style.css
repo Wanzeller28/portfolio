@@ -9,6 +9,9 @@
     background-color:var(--color-primary);
 }
 
+body{
+    color: #212121;
+}
 
 /*Utilities*/
 .max-full-width{
@@ -228,8 +231,8 @@ body.home.desktop .grid-container {
     margin-top: 40px;
 }
 .desktop.about h2{
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 200px;
+    padding-right: 200px;
 }
 .about h2{
     text-align: center;
