@@ -233,6 +233,7 @@ body.home.desktop .grid-container {
 .desktop.about h2{
     padding-left: 200px;
     padding-right: 200px;
+    padding-top: 40px;
 }
 .about h2{
     text-align: center;
