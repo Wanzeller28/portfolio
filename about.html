@@ -1,72 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-<style>
-
-</style>
+    <meta charset="UTF-8">
+    <title>About — Francisco Wanzeller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Francisco Wanzeller — Senior UX/UI designer based in Lisbon.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NR3CE2XRRW"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NR3CE2XRRW');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NR3CE2XRRW');
 </script>
 
 <body class="about">
     <header>
         <nav>
-            <a class="navigation-item" href="index.html">Projects</a>
-            <a class="navigation-item active" href="#">About</a>
+            <a class="navigation-item" href="index.html">Work</a>
+            <a class="navigation-item active" href="about.html">About</a>
         </nav>
     </header>
 
-    <h2 >Ensuring every pixel drives both <span>business growth</span> and <span>user satisfaction.</span></h2>
-
-
-    <!--<div class="photo">
-        <img class="border-radius" src="./images/photo.jpg">
-    </div>   -->
+    <section class="about-hero">
+        <h2>Ensuring every pixel drives both <span>business growth</span> and <span>user satisfaction.</span></h2>
+    </section>
 
     <main>
-        <div class="services">
-            <h3 class="margin-top-none">Focus on</h3>
-            <ul>
-                <li>User research</li>
-                <li>Interface design</li>
-                <li>Usability testing</li>
-                <li>Interaction design</li>
-                <li>Design systems creation</li>
-                <li>Web application design</li>
-                <li>Mobile app design (iOS / Android)</li>
-            </ul>  
+        <div class="about-grid">
+            <aside class="services">
+                <h3>Focus on</h3>
+                <ul>
+                    <li>User research</li>
+                    <li>Interface design</li>
+                    <li>Usability testing</li>
+                    <li>Interaction design</li>
+                    <li>Design systems</li>
+                    <li>Web application design</li>
+                    <li>Mobile app design (iOS / Android)</li>
+                </ul>
+            </aside>
+
+            <div class="bio">
+                <h3>Bio</h3>
+                <p>As a Senior UX/UI designer, I've spent the last years working with companies to transform ideas into intuitive and impactful digital experiences. My design approach focuses on aligning strategies with organizational goals, refining processes and delivering value throughout the product lifecycle.</p>
+                <p>Alongside my work, you'll probably catch me on the tennis court, jamming on the drums, walking my dog, exploring new cultures, or just enjoying quality time with friends and family.</p>
+
+                <div class="contact">
+                    <a href="mailto:franciscowanzeller@gmail.com">franciscowanzeller@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/fwanzeller/" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
         </div>
-
-
-        <div class="bio">
-            <h3 class="margin-top-none">Bio</h3>
-            <p>As a Senior UX/UI designer, I've spent the last years working with companies to transform ideas into intuitive and impactful digital experiences. My design approach focuses on aligning strategies with organizational goals, refining processes and delivering value throughout the product lifecycle.</p>
-
-           <p>Along side my work, you'll probably catch me on the tennis court, jamming on the drums, walking my dog, exploring new cultures, or just enjoying quality time with my friends and family.</p>
-           <a style="display:block;margin-bottom:8px;" href="mailto:franciscowanzeller@gmail.com">franciscowanzeller@gmail.com</a>
-           <a style="display:block;" href="https://www.linkedin.com/in/fwanzeller/" target="_blank">Linkedin</a>
-        </div>
-
-             
-
     </main>
 
+    <footer>
+        <span class="footer-brand">Francisco Wanzeller</span>
+        <span class="footer-meta">Lisbon, Portugal · © 2025</span>
+        <nav>
+            <a href="mailto:franciscowanzeller@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/fwanzeller/" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+    </footer>
+
     <script src="script.js"></script>
-
-
 </body>
-
 </html>
