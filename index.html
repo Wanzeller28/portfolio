@@ -24,71 +24,109 @@
     <header>
         <nav>
             <a class="navigation-item active" href="index.html">Work</a>
-            <a class="navigation-item" href="about.html">About</a>
         </nav>
     </header>
 
     <main>
         <section class="intro">
             <!--<span class="eyebrow">Available for new projects</span>-->
-            <h2>Hi, I'm Francisco Wanzeller <span class="accent">—</span> a Senior Product Designer based in Lisbon.</h2>
-            <h4>I design digital products that balance business goals with user needs — with a deep focus on craft, clarity and quality.</h4>
+            <h2 class="typewriter" aria-label="Hi, I am Francisco Wanzeller. I am a Senior Product Designer.">
+                <span class="tw-text" aria-hidden="true"></span><span class="tw-caret" aria-hidden="true"></span>
+            </h2>
+        </section>
+
+        <section class="statement" id="about">
+            <div class="statement-inner">
+                <div class="statement-grid">
+                    <div class="statement-col">
+                        <p class="statement-text" data-statement>Humanizing <em>business goals</em> through <em>digital design</em>.</p>
+                    </div>
+                    <aside class="statement-bio">
+                        <span class="statement-eyebrow">A bit about me</span>
+                        <p>I'm a Senior Product Designer working across the full design spectrum, from leading creative direction for B2C and B2B projects of all sizes to building scalable design systems. My approach combines strategic thinking with a commitment to craft and clarity, ensuring that complex problems result in valuable experiences from discovery to launch.</p>
+                        <p>Beyond the screen, I stay balanced by playing tennis, drumming, traveling, and enjoying time with my dog.</p>
+                        <div class="statement-links">
+                            <a class="statement-link" href="mailto:franciscowanzeller@gmail.com">franciscowanzeller@gmail.com</a>
+                            <a class="statement-link" href="https://www.linkedin.com/in/fwanzeller/" target="_blank" rel="noopener">Connect with me on LinkedIn</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
         </section>
 
         <div class="section-heading">
             <h3>Selected Work</h3>
-            <!--<span class="count">2020 — 2025</span>-->
         </div>
 
-        <div class="grid-container grid-columns-2">
+        <div class="work">
 
-            <a href="clientportal.html">
-                <div class="grid-item">
-                    <div class="thumbnail">
-                        <img src="./images/home/Randstad - Dashboard.png" alt="Randstad SaaS dashboard">
+            <section class="work-entry" style="--brand:#2F6BFF;">
+                <div class="entry-media" data-reveal>
+                    <div class="carousel" data-carousel>
+                        <div class="carousel-track">
+                            <a class="slide" href="clientportal.html"><img src="./images/home/Randstad - Dashboard.png" alt="Randstad dashboard"></a>
+                            <a class="slide" href="clientportal.html"><img src="./images/client-portal/Timesheets.jpg" alt="Randstad timesheets"></a>
+                            <a class="slide" href="clientportal.html"><img src="./images/client-portal/Documents - Contracts.jpg" alt="Randstad contracts"></a>
+                            <a class="slide" href="clientportal.html"><img src="./images/client-portal/Vacations Approval.jpg" alt="Randstad vacations approval"></a>
+                        </div>
+                        <button class="carousel-arrow carousel-arrow--prev" type="button" aria-label="Previous image">‹</button>
+                        <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Next image">›</button>
                     </div>
-                    <div class="meta-information">
-                        <span>Randstad — SaaS Platform</span>
-                        <span class="subtitle">Product Design · UX</span>
-                    </div>
+                    <div class="carousel-dots"></div>
                 </div>
-            </a>
+                <div class="entry-text" data-reveal>
+                    <h3>Unified HR Platform</h3>
+                    <span class="tags">Product Design &amp; UX</span>
+                    <p class="entry-desc">A comprehensive web and mobile solution designed to automate HR workflows. From timesheets to contract management, it brings workers and clients together in one centralized, intuitive environment.</p>
+                    <span class="entry-client">Client: <strong>Randstad</strong></span>
+                    <a class="case-link" href="clientportal.html">View project details</a>
+                </div>
+            </section>
 
-            <a href="zoofy.html">
-                <div class="grid-item">
-                    <div class="thumbnail">
-                        <img src="./images/home/zoofy.png" alt="Zoofy mobile app" style="width:220px;">
+            <section class="work-entry" style="--brand:#14B8A6;">
+                <div class="entry-media" data-reveal>
+                    <div class="carousel carousel--contain" data-carousel>
+                        <div class="carousel-track">
+                            <a class="slide" href="zoofy.html"><img src="./images/home/zoofy.png" alt="Zoofy home screen"></a>
+                            <a class="slide" href="zoofy.html"><img src="./images/zoofy/zoofy-up.png" alt="Zoofy screen"></a>
+                            <a class="slide" href="zoofy.html"><img src="./images/zoofy/booking-flow.png" alt="Zoofy booking flow"></a>
+                        </div>
+                        <button class="carousel-arrow carousel-arrow--prev" type="button" aria-label="Previous image">‹</button>
+                        <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Next image">›</button>
                     </div>
-                    <div class="meta-information">
-                        <span>Zoofy</span>
-                        <span class="subtitle">Mobile Design</span>
-                    </div>
+                    <div class="carousel-dots"></div>
                 </div>
-            </a>
+                <div class="entry-text" data-reveal>
+                    <h3>Home Services at your fingertips</h3>
+                    <span class="tags">Mobile Design, iOS &amp; Android</span>
+                    <p class="entry-desc">A marketplace app that connects people with trusted professionals for any home job. I designed the end-to-end booking flow and a scalable design system across iOS and Android.</p>
+                    <span class="entry-client">Client: <strong>Zoofy</strong></span>
+                    <a class="case-link" href="zoofy.html">View project details</a>
+                </div>
+            </section>
 
-            <a href="decideact.html">
-                <div class="grid-item">
-                    <div class="thumbnail">
-                        <img src="./images/decideact/decideact-cover.png" alt="DecideAct website">
+            <section class="work-entry" style="--brand:#7C5CFF;">
+                <div class="entry-media" data-reveal>
+                    <div class="carousel" data-carousel>
+                        <div class="carousel-track">
+                            <a class="slide" href="decideact.html"><img src="./images/decideact/decideact-cover.png" alt="DecideAct cover"></a>
+                            <a class="slide" href="decideact.html"><img src="./images/decideact/solutions.jpg" alt="DecideAct solutions page"></a>
+                            <a class="slide" href="decideact.html"><img src="./images/decideact/case-studies.jpg" alt="DecideAct case studies page"></a>
+                            <a class="slide" href="decideact.html"><img src="./images/decideact/blog.jpg" alt="DecideAct blog page"></a>
+                        </div>
+                        <button class="carousel-arrow carousel-arrow--prev" type="button" aria-label="Previous image">‹</button>
+                        <button class="carousel-arrow carousel-arrow--next" type="button" aria-label="Next image">›</button>
                     </div>
-                    <div class="meta-information">
-                        <span>DecideAct</span>
-                        <span class="subtitle">Web Design · Branding</span>
-                    </div>
+                    <div class="carousel-dots"></div>
                 </div>
-            </a>
-
-            <a href="impf-finder.html">
-                <div class="grid-item impf-finder-thumbnail">
-                    <div class="thumbnail">
-                        <img src="./images/impf-finder/home.png" alt="Impf-Finder mobile app">
-                    </div>
-                    <div class="meta-information">
-                        <span>Impf-Finder</span>
-                        <span class="subtitle">Mobile Design</span>
-                    </div>
+                <div class="entry-text" data-reveal>
+                    <h3>A strategy-execution platform and brand</h3>
+                    <span class="tags">Web Design, Branding</span>
+                    <p class="entry-desc">I led the website redesign and visual identity to make complex strategy-execution software feel approachable while clarifying the core product story.</p>
+                    <span class="entry-client">Client: <strong>DecideAct</strong></span>
+                    <a class="case-link" href="decideact.html">View project details</a>
                 </div>
-            </a>
+            </section>
 
         </div>
     </main>

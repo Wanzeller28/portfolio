@@ -86,6 +86,7 @@ body {
     background-color: var(--bg);
     letter-spacing: -0.005em;
     min-height: 100vh;
+    overflow-x: clip; /* clip (not hidden) so position:sticky keeps working */
 }
 
 img {
@@ -294,6 +295,64 @@ main {
     max-width: var(--container-narrow);
 }
 
+/* Home hero fills the first screen, centered — so "How I work" only shows on scroll */
+.home .intro {
+    position: relative;
+    isolation: isolate;
+    max-width: 100%;
+    text-align: center;
+    min-height: 86svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Soft radial glow behind the hero — brand yellow, slow ambient breathing */
+.home .intro::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 130%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse 50% 42% at 50% 40%, rgba(245, 210, 12, 0.16) 0%, rgba(245, 210, 12, 0.065) 40%, transparent 68%);
+    animation: hero-glow 16s ease-in-out infinite alternate;
+    will-change: opacity, transform;
+    pointer-events: none;
+}
+
+/* Slow side-to-side sweep — brightest as it crosses the centre */
+@keyframes hero-glow {
+    from { opacity: 0.75; transform: translate(calc(-50% - 28vw), -50%); }
+    50%  { opacity: 1; }
+    to   { opacity: 0.75; transform: translate(calc(-50% + 28vw), -50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home .intro::before { animation: none; }
+}
+
+/* Film-grain texture over the glow — also masks gradient banding */
+.home .intro::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    opacity: 0.035;
+    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
+    mask-image: linear-gradient(to bottom, #000 75%, transparent);
+    pointer-events: none;
+}
+
+.home .intro h2 {
+    text-align: center;
+}
+
 .intro h1,
 .intro h2,
 .intro h4 {
@@ -305,7 +364,7 @@ main {
     font-family: var(--font-display);
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(2.25rem, 4.5vw + 0.75rem, 3.75rem);
+    font-size: clamp(2.5rem, 9vw, 6.875rem); /* up to 110px */
     letter-spacing: -0.015em;
     line-height: 1.05;
     color: var(--text);
@@ -314,6 +373,43 @@ main {
 .intro h2 .accent {
     color: var(--primary);
     font-style: italic;
+}
+
+/* Typewriter hero */
+.typewriter {
+    min-height: 2.3em;
+}
+
+.typewriter .tw-text {
+    white-space: pre-line; /* honours the \n line breaks in the typed phrases */
+    transition: color var(--duration) var(--ease);
+}
+
+.typewriter .tw-text--accent {
+    color: var(--primary);
+}
+
+.typewriter .tw-caret {
+    display: inline-block;
+    width: 0.045em;
+    min-width: 3px;
+    height: 0.92em;
+    margin-left: 0.06em;
+    background: var(--primary);
+    vertical-align: -0.08em;
+    border-radius: 1px;
+    animation: caret-blink 1.05s steps(1) infinite;
+}
+
+/* Solid caret while actively typing; blink only when idle */
+.typewriter.is-typing .tw-caret {
+    animation: none;
+    opacity: 1;
+}
+
+@keyframes caret-blink {
+    0%, 48% { opacity: 1; }
+    49%, 100% { opacity: 0; }
 }
 
 .intro h4 {
@@ -353,29 +449,160 @@ main {
 }
 
 /* =========================================================
+   Statement — scroll-linked word reveal (punchy mission)
+   ========================================================= */
+.statement {
+    position: relative;
+}
+
+.statement-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 20px 0 var(--space-9);
+}
+
+.statement-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+/* Two columns: animated statement (left) + bio (right) */
+.statement-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-7) var(--space-8);
+    align-items: start;
+    width: 100%;
+}
+
+.statement-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.statement-bio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+}
+
+.statement-bio p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 0.3vw + 0.95rem, 1.0625rem);
+    line-height: 1.7;
+    max-width: 44ch;
+}
+
+.statement-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.statement-bio .statement-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: fit-content;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color var(--duration-fast) var(--ease);
+}
+
+.statement-bio .statement-link::after {
+    content: "\2192";
+    color: var(--primary);
+    transition: transform var(--duration) var(--ease-out);
+}
+
+.statement-bio .statement-link:hover { color: var(--primary); }
+.statement-bio .statement-link:hover::after { transform: translateX(5px); }
+
+.statement-text {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 4rem); /* up to 64px */
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+    max-width: none;
+    margin: 0;
+}
+
+.statement-text em {
+    font-style: normal;
+}
+
+.statement-text .w {
+    color: var(--text-muted);
+    transition: color 0.35s var(--ease);
+}
+
+.statement-text .w.lit {
+    color: var(--text);
+}
+
+.statement-text .w.accent.lit {
+    color: var(--primary);
+}
+
+/* Reduced motion / no-JS: flatten the scrub, show the full statement */
+.statement.is-static {
+    height: auto;
+}
+
+.phone .statement-inner {
+    padding: var(--space-7) 0;
+}
+
+.tablet .statement-grid,
+.phone .statement-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+.phone .statement-text {
+    max-width: none;
+}
+
+/* =========================================================
    Section heading
    ========================================================= */
 .section-heading {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 0 var(--space-4);
-    margin-bottom: var(--space-6);
+    margin-bottom: 40px;
+}
+
+/* Soft divider — hairline fading at both ends, marks the intro → work break */
+.section-heading::before {
+    content: "";
+    width: min(720px, 100%);
+    height: 1px;
+    margin-bottom: 64px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
 }
 
 .section-heading h3 {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.section-heading .count {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: var(--text);
 }
 
 /* =========================================================
@@ -414,7 +641,6 @@ main {
 .home main a {
     text-decoration: none;
     color: inherit;
-    display: grid;
 }
 
 .grid-item {
@@ -474,19 +700,251 @@ main {
     letter-spacing: 0.02em;
 }
 
-/* Special override for Impf-Finder which has a small mobile screenshot */
-.impf-finder-thumbnail .thumbnail img {
-    max-width: 240px;
+/* =========================================================
+   Home — work sections (image carousel + 2-column text)
+   ========================================================= */
+.work {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    padding: var(--space-6) var(--space-4) var(--space-8);
 }
+
+/* Two columns: media (carousel) + text, alternating sides, no panel */
+.work-entry {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6) var(--space-8);
+    align-items: center;
+}
+
+/* Alternate: media moves to the right on even projects */
+.work-entry:nth-child(even) .entry-media { order: 2; }
+.work-entry:nth-child(even) .entry-text { order: 1; }
+
+.entry-media {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- Carousel ---- */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 3;
+    background: var(--bg-thumbnail);
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s var(--ease-out);
+    will-change: transform;
+}
+
+.carousel .slide {
+    flex: 0 0 100%;
+    height: 100%;
+    display: block;
+}
+
+.carousel .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Mobile-screen projects: let portraits breathe instead of cropping */
+.carousel--contain {
+    background:
+        radial-gradient(120% 120% at 50% 0%,
+            color-mix(in srgb, var(--brand) 22%, transparent), transparent 62%),
+        var(--bg-thumbnail);
+}
+
+.carousel--contain .slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+}
+
+.carousel--contain .slide img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
+}
+
+/* Arrows (appear on hover, desktop) */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: rgba(10, 10, 11, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--duration) var(--ease), background var(--duration-fast) var(--ease);
+    z-index: 2;
+}
+
+.carousel-arrow--prev { left: var(--space-4); }
+.carousel-arrow--next { right: var(--space-4); }
+
+.carousel:hover .carousel-arrow { opacity: 1; }
+
+.carousel-arrow:hover {
+    background: var(--primary);
+    color: var(--text-on-primary);
+    border-color: var(--primary);
+}
+
+.carousel-arrow:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Hide arrows when there is only one slide */
+.carousel[data-single] .carousel-arrow { display: none; }
+
+/* ---- Pagination dashes ---- */
+.carousel-dots {
+    display: flex;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 0;
+}
+
+.carousel-dots .dot {
+    width: 34px;
+    height: 3px;
+    padding: 0;
+    border: none;
+    border-radius: 2px;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background var(--duration) var(--ease), width var(--duration) var(--ease);
+}
+
+.carousel-dots .dot:hover { background: var(--text-secondary); }
+
+.carousel-dots .dot.active {
+    background: var(--text);
+    width: 48px;
+}
+
+.carousel-dots:empty { display: none; }
+
+/* ---- Text column ---- */
+.entry-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+}
+
+.entry-text h3 {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(1.625rem, 1.8vw + 1.1rem, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    text-transform: none;
+    margin: 0;
+}
+
+.entry-text h3 strong {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.entry-text .tags {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+}
+
+.entry-desc {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
+    line-height: 1.6;
+    max-width: 46ch;
+}
+
+.entry-client {
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+}
+
+.entry-client strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.entry-text .case-link {
+    margin-top: var(--space-2);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.entry-text .case-link::after {
+    content: "\2192";
+    color: var(--brand);
+    transition: transform var(--duration) var(--ease-out);
+}
+
+.entry-text .case-link:hover { color: var(--brand); }
+.entry-text .case-link:hover::after { transform: translateX(5px); }
+
+/* Reveal */
+.work-entry [data-reveal].reveal { transform: translateY(28px); }
+.work-entry [data-reveal].reveal.is-visible { transform: none; }
+.work-entry .entry-text[data-reveal].reveal { transition-delay: 0.08s; }
+
+/* Responsive — stack to one column, media on top */
+.tablet .work-entry,
+.phone .work-entry {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+}
+
+.tablet .work-entry:nth-child(even) .entry-media,
+.phone .work-entry:nth-child(even) .entry-media { order: 0; }
+
+.tablet .work-entry:nth-child(even) .entry-text,
+.phone .work-entry:nth-child(even) .entry-text { order: 0; }
+
+.phone .carousel-arrow { display: none; }
 
 /* =========================================================
    Project detail pages
    ========================================================= */
-body:not(.home):not(.about) main {
+body:not(.home) main {
     max-width: var(--container-narrow);
 }
 
-body:not(.home):not(.about) main h1 {
+body:not(.home) main h1 {
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(2.75rem, 4.5vw + 1rem, 4.25rem);
@@ -525,7 +983,7 @@ body:not(.home):not(.about) main h1 {
     font-weight: 500;
 }
 
-body:not(.home):not(.about) main h3 {
+body:not(.home) main h3 {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -534,8 +992,8 @@ body:not(.home):not(.about) main h3 {
     margin-bottom: var(--space-3);
 }
 
-body:not(.home):not(.about) main section h3,
-body:not(.home):not(.about) main .block h3 {
+body:not(.home) main section h3,
+body:not(.home) main .block h3 {
     margin-top: 0;
 }
 
@@ -737,118 +1195,6 @@ body.project .zoofy-split:hover img {
 }
 
 /* =========================================================
-   About page
-   ========================================================= */
-.about main {
-    max-width: var(--container-narrow);
-    padding-top: var(--space-7);
-}
-
-.about .about-hero {
-    max-width: var(--container-narrow);
-    margin: 0 auto;
-    padding: var(--space-8) var(--space-7) var(--space-7);
-    text-align: left;
-}
-
-.about .about-hero h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.875rem, 3.5vw + 0.75rem, 3rem);
-    letter-spacing: -0.015em;
-    line-height: 1.12;
-    color: var(--text);
-    padding: 0;
-    text-align: left;
-    max-width: 25ch;
-}
-
-.about .about-hero h2 span {
-    color: var(--primary);
-    font-style: italic;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: var(--space-8);
-    align-items: start;
-}
-
-.phone .about-grid,
-.tablet .about-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-}
-
-.about-grid .services h3,
-.about-grid .bio h3 {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--primary);
-    margin: 0 0 var(--space-4);
-}
-
-.about-grid .services ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.about-grid .services li {
-    padding: var(--space-3) 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    font-size: 0.9375rem;
-}
-
-.about-grid .services li:last-child {
-    border-bottom: none;
-}
-
-.about-grid .bio p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-.about-grid .bio .contact {
-    margin-top: var(--space-6);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-}
-
-.about-grid .bio .contact a {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--text);
-    font-weight: 500;
-    font-size: 0.9375rem;
-    transition: color var(--duration-fast) var(--ease);
-    width: fit-content;
-}
-
-.about-grid .bio .contact a:hover {
-    color: var(--primary);
-}
-
-.about-grid .bio .contact a::before {
-    content: "→";
-    color: var(--primary);
-    transition: transform var(--duration) var(--ease);
-}
-
-.about-grid .bio .contact a:hover::before {
-    transform: translateX(4px);
-}
-
-/* =========================================================
    Footer
    ========================================================= */
 footer {
@@ -958,6 +1304,11 @@ footer nav a:hover {
 
     .intro {
         padding: var(--space-7) var(--space-3) var(--space-6);
+    }
+
+    .intro h2 {
+        font-size: clamp(1.875rem, 7vw + 0.5rem, 2.5rem);
+        overflow-wrap: break-word;
     }
 
     .project-meta {
