@@ -308,47 +308,6 @@ main {
     align-items: center;
 }
 
-/* Soft radial glow behind the hero — brand yellow, slow ambient breathing */
-.home .intro::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 130%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse 50% 42% at 50% 40%, rgba(245, 210, 12, 0.16) 0%, rgba(245, 210, 12, 0.065) 40%, transparent 68%);
-    animation: hero-glow 16s ease-in-out infinite alternate;
-    will-change: opacity, transform;
-    pointer-events: none;
-}
-
-/* Slow side-to-side sweep — brightest as it crosses the centre */
-@keyframes hero-glow {
-    from { opacity: 0.75; transform: translate(calc(-50% - 28vw), -50%); }
-    50%  { opacity: 1; }
-    to   { opacity: 0.75; transform: translate(calc(-50% + 28vw), -50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .home .intro::before { animation: none; }
-}
-
-/* Film-grain texture over the glow — also masks gradient banding */
-.home .intro::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 160px 160px;
-    opacity: 0.035;
-    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
-    mask-image: linear-gradient(to bottom, #000 75%, transparent);
-    pointer-events: none;
-}
-
 .home .intro h2 {
     text-align: center;
 }
