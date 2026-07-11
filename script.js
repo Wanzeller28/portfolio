@@ -284,7 +284,7 @@
             document.body.classList.remove('body-lock');
         };
 
-        const selector = '.thumbnail img, .image-callout img, .zoofy-split img';
+        const selector = '.thumbnail img, .image-callout img, .zoofy-split img, .media-frame img';
         document.querySelectorAll(selector).forEach((img) => {
             img.addEventListener('click', (e) => {
                 e.preventDefault();

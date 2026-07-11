@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Only 2 meta items on this page — keep them together instead of spreading across the row */
+        .project-meta {
+            grid-template-columns: repeat(2, max-content);
+            column-gap: var(--space-8);
+        }
+
         .zoofy-split {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -67,9 +73,7 @@
 
         <div class="project-meta">
             <div class="meta-item"><span class="label">Role</span><span class="value">Lead UX/UI Designer</span></div>
-            <div class="meta-item"><span class="label">Tools</span><span class="value">Figma</span></div>
             <div class="meta-item"><span class="label">Product</span><span class="value">Mobile application</span></div>
-            <div class="meta-item"><span class="label">Duration</span><span class="value">3 months</span></div>
         </div>
 
         <div class="block">

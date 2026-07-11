@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tender Platform Redesign — Francisco Wanzeller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ——— Page-specific components (tender case study) ——— */
+
+        /* Only 2 meta items on this page — keep them together instead of spreading across the row */
+        .project-meta {
+            grid-template-columns: repeat(2, max-content);
+            column-gap: var(--space-8);
+        }
+
+        /* Display title under the small yellow h3 label */
+        .block-title {
+            font-size: clamp(1.4rem, 3vw, 1.75rem);
+            font-weight: 600;
+            line-height: 1.25;
+            color: var(--text);
+            margin: 0 0 var(--space-4);
+        }
+
+        /* Research cards (market patterns / friction points) */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        .research-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .research-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+        }
+        .research-card .card-tag {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-3);
+        }
+        .research-card .card-tag.tone-yellow { color: var(--primary); }
+        .research-card .card-tag.tone-blue { color: #7A9BFF; }
+        .research-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 var(--space-3);
+        }
+        .research-card p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .research-card p + p { margin-top: var(--space-3); }
+        .research-card .card-flaw { color: #C97C70; }
+        .research-card .card-platforms {
+            display: block;
+            margin-top: var(--space-4);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Numbered principles */
+        .principles { margin: var(--space-6) 0; }
+        .principle {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: var(--space-5);
+            padding: var(--space-5) 0;
+            border-top: 1px solid var(--border);
+        }
+        .principle:last-child { border-bottom: 1px solid var(--border); }
+        .principle .num {
+            font-family: "DM Serif Display", serif;
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+        .principle h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 var(--space-2);
+        }
+        .principle p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 0;
+            max-width: 52em;
+        }
+
+        /* Media frame — browser chrome around clips/screenshots */
+        .media-frame {
+            margin: var(--space-6) 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg-elevated);
+        }
+        .media-frame .frame-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-thumbnail);
+        }
+        .media-frame .frame-bar i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--border-strong);
+        }
+        .media-frame video,
+        .media-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .media-frame img { cursor: zoom-in; }
+        .media-frame .frame-placeholder {
+            aspect-ratio: 16 / 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            background:
+                radial-gradient(ellipse at 50% 40%, var(--primary-dim), transparent 65%),
+                var(--bg-elevated);
+        }
+        .media-frame .frame-placeholder::before {
+            content: "▶";
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        /* Design moments — insight → decision */
+        .moment { margin: var(--space-9) 0; }
+        .moment:first-of-type { margin-top: 48px; }
+        .moment > h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 var(--space-4);
+        }
+        .moment .moment-insight {
+            border-left: 2px solid var(--primary);
+            padding-left: var(--space-4);
+            margin: 0 0 var(--space-4);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .moment .moment-insight strong {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: var(--space-1);
+        }
+        .moment > p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 46em;
+            margin: 0;
+        }
+
+        /* Responsive */
+        .tablet .research-grid,
+        .phone .research-grid,
+        .tablet .research-grid.cols-2,
+        .phone .research-grid.cols-2 { grid-template-columns: 1fr; }
+        .phone .principle { grid-template-columns: 48px 1fr; gap: var(--space-4); }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NR3CE2XRRW"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NR3CE2XRRW');
+</script>
+
+<body class="project">
+    <header>
+        <nav>
+            <a class="navigation-item" href="index.html">Work</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>From linear wizard to workspace</h1>
+
+        <div class="project-meta">
+            <div class="meta-item"><span class="label">Role</span><span class="value">Senior Product Designer</span></div>
+            <div class="meta-item"><span class="label">Product</span><span class="value">B2B tendering platform</span></div>
+        </div>
+
+        <div class="block">
+            <h3>01 · Context</h3>
+            <p class="block-title">Where UX stopped evolving</p>
+            <p>Organizations use tendering platforms to create and award contracts, yet the sector has been stagnant due to outdated tech and risk-aversion.</p>
+            <p>Before touching a single screen, I ran a market study across six platforms — Vortal, Mercell, Bonfire, Jaggaer, Proactis and SAP Ariba — to understand what's broken in tendering software, why it has stayed broken, and where the opportunity was. Then I redesigned our tender creation experience around what I found.</p>
+        </div>
+
+        <div class="block">
+            <h3>02 · Research</h3>
+
+            <p>Every major platform replicates paper processes behind a new interface. Two structural forces lock this in: legacy architecture and regulation treated as form design, with the EU eForms schema (40 notice types, hundreds of fields) surfaced directly to the people who just want to buy something.</p>
+
+            <p>Tender creation follows one of these patterns:</p>
+
+            <div class="research-grid cols-2">
+                <div class="research-card">
+                    <span class="card-tag tone-yellow">Most common</span>
+                    <h4>Sequential wizard</h4>
+                    <p>Discrete steps: General → Lots → Documents → Suppliers → Review → Publish.</p>
+                    <p class="card-flaw">Forces sequential logic onto a non-sequential task. Back-navigation risks data loss; mid-flow changes break the flow.</p>
+                    <span class="card-platforms">Proactis · Mercell · Jaggaer</span>
+                </div>
+                <div class="research-card">
+                    <span class="card-tag tone-blue">Emerging</span>
+                    <h4>Single-page accordion</h4>
+                    <p>All sections visible but collapsed, with anchor navigation. Measurably faster than wizards.</p>
+                    <p class="card-flaw">Data still hides behind collapsed panels; errors point to anchors instead of natural flow recovery.</p>
+                    <span class="card-platforms">Vortal · SAP Ariba</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="block">
+            <h3>03 · Principles</h3>
+            <p class="block-title">What the research demanded</p>
+
+            <div class="principles">
+                <div class="principle">
+                    <span class="num">01</span>
+                    <div>
+                        <h4>Decide vs. fill</h4>
+                        <p>Tendering decisions are contextual, not isolated. Unlike routine data entry, inputs are often interdependent, relying on their relationship with information already provided.</p>
+                    </div>
+                </div>
+                <div class="principle">
+                    <span class="num">02</span>
+                    <div>
+                        <h4>Invisible compliance</h4>
+                        <p>Instead of forcing users to speak the 'language of the schema', the eForms schema should be invisible to buyers and mapped behind the scenes, ensuring errors are caught early and in plain English.</p>
+                    </div>
+                </div>
+                <div class="principle">
+                    <span class="num">03</span>
+                    <div>
+                        <h4>Intelligent scaling</h4>
+                        <p>Filling 60 fields for 10 lots is too much repetitive work. A system should handle data inheritance and consistency checks automatically.</p>
+                    </div>
+                </div>
+                <div class="principle">
+                    <span class="num">04</span>
+                    <div>
+                        <h4>State persistence is trust</h4>
+                        <p>A reliable system must guarantee that work is safe. Autosave, visible drafts, and session recovery are the foundation of this trust, preventing frustration and ensuring a seamless experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="block">
+            <h3>04 · The redesign</h3>
+
+            <div class="moment" data-reveal>
+                <h4>A workspace, not a wizard</h4>
+                <p class="moment-insight"><strong>The research showed</strong>Tendering is parallel, but wizards force it to be sequential.</p>
+                <p>I redesigned the experience as a modular workspace where users can edit any part at any time. With all module states visible at once, we eliminated the 'step-by-step' trap and provided a clear view of the entire project.</p>
+                <!-- Para trocar por vídeo: substitui o <img> por
+                     <video autoplay muted loop playsinline poster="./images/tender/workspace2.webp">
+                         <source src="./images/tender/workspace.mp4" type="video/mp4">
+                     </video> -->
+                <div class="media-frame">
+                    <div class="frame-bar"><i></i><i></i><i></i></div>
+                    <img src="./images/tender/workspace2.webp" alt="Tender preparation workspace — modules for project data, lots, criteria and documents, each with its own completion state, editable in any order">
+                </div>
+            </div>
+
+            <div class="moment" data-reveal>
+                <h4>Define once, fill everywhere</h4>
+                <p class="moment-insight"><strong>The research showed</strong>A 10 lot tender shouldn't mean 60 repetitive tasks.</p>
+                <p>You define the common structure once, and every lot is automatically filled. You only edit what's different.</p>
+                <div class="media-frame">
+                    <div class="frame-bar"><i></i><i></i><i></i></div>
+                    <img src="./images/tender/workspace-clone.webp" alt="Lots panel — the shared lot template defines name, service type, classification and award criteria once, and every lot inherits it">
+                </div>
+            </div>
+
+            <div class="moment" data-reveal>
+                <h4>Work that never disappears</h4>
+                <p class="moment-insight"><strong>The research showed</strong>Inconsistent autosave is the single fastest way to lose a buyer's trust.</p>
+                <p>The system continuously autosaves with a visible timestamp, paired with validation that arrives at the right moment, as guidance rather than punishment.</p>
+                <div class="media-frame">
+                    <div class="frame-bar"><i></i><i></i><i></i></div>
+                    <img src="./images/tender/error-surface.webp" alt="Properties panel with a visible last-saved timestamp and required fields flagged early, in plain English">
+                </div>
+            </div>
+        </section>
+
+        <div class="block">
+            <h3>05 · Outcome</h3>
+            <p class="block-title">Where it landed</p>
+            <!-- TODO: substitui por resultados reais — validação com stakeholders, testes, feedback do cliente -->
+            <p>The redesign reframed tender creation from a compliance form into a working environment, a shift validated against the three dominant market patterns and the friction points the research exposed. The full interactive prototype covers the multi-project preparation flow end-to-end.</p>        </div>
+    </main>
+
+    <footer>
+        <span class="footer-brand">Francisco Wanzeller</span>
+        <span class="footer-meta">Lisbon, Portugal · © 2026</span>
+        <nav>
+            <a href="mailto:franciscowanzeller@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/fwanzeller/" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
